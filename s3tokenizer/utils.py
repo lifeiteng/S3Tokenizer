@@ -24,7 +24,6 @@ import os
 import torch
 import torch.nn.functional as F
 from torch.nn.utils.rnn import pad_sequence
-import torchaudio
 import onnx
 import numpy as np
 
@@ -140,6 +139,7 @@ def load_audio(file: str, sr: int = 16000):
     -------
     A torch.Tensor containing the audio waveform, in float32 dtype.
     """
+    import torchaudio
     audio, sample_rate = torchaudio.load(file)
     if sample_rate != sr:
         audio = torchaudio.transforms.Resample(sample_rate, sr)(audio)
